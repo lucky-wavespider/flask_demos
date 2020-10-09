@@ -1,0 +1,17 @@
+<html>
+
+<li><a href="{{ url_for('index') }}">{{ _('Home') }}</a></li>
+
+{% autoescape false %}
+<p>{{ _(
+        '%(nickname)s said :', nickname = '<a href="%s">%s</a>' %
+            (url_for('index', nickname=post.author.nickname), post.author.nickname)
+        )
+    }}</p>
+{% endautoescape %}
+
+{% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+
+</html>
